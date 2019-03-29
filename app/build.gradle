@@ -7,15 +7,7 @@ def keystoreProps = new Properties()
 keystoreProps.load((new FileInputStream(keystorePropsFile)))
 
 android {
-    compileSdkVersion 28
-    defaultConfig {
-        applicationId "com.cxyzy.signappdemo"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+    ......
     signingConfigs {
         release {
             storeFile file(keystoreProps['keystoreFile'])
