@@ -1,8 +1,10 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+
+def keystorePropsFile = rootProject.file("keystore.properties")
+def keystoreProps = new Properties()
+keystoreProps.load((new FileInputStream(keystorePropsFile)))
 
 android {
     compileSdkVersion 28
@@ -16,10 +18,10 @@ android {
     }
     signingConfigs {
         release {
-            storeFile file("../test.keystore")
-            storePassword "123456"
-            keyAlias "test"
-            keyPassword "123456"
+            storeFile file(keystoreProps['keystoreFile'])
+            storePassword keystoreProps['keystorePSW']
+            keyAlias keystoreProps['keystoreAlias']
+            keyPassword keystoreProps['keystoreAliasPSW']
         }
     }
     buildTypes {
